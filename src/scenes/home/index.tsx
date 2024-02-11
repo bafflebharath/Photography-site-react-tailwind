@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import { RxDotFilled } from 'react-icons/rx';
 import { SelectedPage } from "@/shared/types";
+import { motion } from "framer-motion";
 
 type Props = {
     setSelectedPage: (value: SelectedPage) => void;
@@ -47,6 +48,9 @@ const Home = ({ setSelectedPage }: Props) => {
 
     return (
         <section id="home">
+            <motion.div
+                onViewportEnter={() => setSelectedPage(SelectedPage.Home)}
+            ></motion.div>
             <div className='max-w-[1600px] h-[730px] w-full m-auto py-16 px-1 relative group'>
                 <div
                     style={{ backgroundImage: `url(${slides[currentIndex].url})`}}

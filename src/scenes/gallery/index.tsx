@@ -1,4 +1,5 @@
 import { SelectedPage } from "@/shared/types";
+import { motion } from "framer-motion";
 
 type Props = {
     setSelectedPage: (value: SelectedPage) => void;
@@ -12,6 +13,9 @@ const Gallery = ({ setSelectedPage }: Props) => {
 
     return (
         <section id="gallery">
+            <motion.div
+                onViewportEnter={() => setSelectedPage(SelectedPage.Gallery)}
+            ></motion.div>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
             {/* Display the first image */}
             <img className="h-auto max-w-full rounded-lg" src={`https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg`} alt="" />

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion } from "framer-motion";
 
 // Import images from assets
 import img1 from '@/assets/wedding/img1.jpg';
@@ -98,6 +99,9 @@ function First({ setSelectedPage }: Props) {
 
   return (
     <section id="first">
+      <motion.div
+                onViewportEnter={() => setSelectedPage(SelectedPage.First)}
+            ></motion.div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
         {[0, 3, 6, 9].map((startIndex: number, columnIndex) => (
           <div key={columnIndex} className="grid gap-1">
