@@ -100,48 +100,51 @@ function First({ setSelectedPage }: Props) {
   return (
     <section id="first">
       <motion.div
-                onViewportEnter={() => setSelectedPage(SelectedPage.First)}
-            ></motion.div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
-        {[0, 3, 6, 9].map((startIndex: number, columnIndex) => (
-          <div key={columnIndex} className="grid gap-1">
-            {generateImageElements(startIndex)}
-          </div>
-        ))}
-        {/* Modal */}
-        {showModal && (
-          <div id="modal" className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-50">
-            <div className="max-h-full overflow-hidden">
-              <img src={selectedImage} alt="" className="w-full max-h-full object-contain" style={{ maxWidth: '500px', maxHeight: '500px' }} />
-              <button
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 mt-4 ml-4 py-2 px-4 bg-gray-800 text-white rounded-lg"
-                onClick={prevImage}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 mr-1">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                </svg>
-              </button>
-              <button
-                className="absolute right-0 top-1/2 transform -translate-y-1/2 mt-4 mr-4 py-2 px-4 bg-gray-800 text-white rounded-lg"
-                onClick={nextImage}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                </svg>
-
-              </button>
-              <button
-                className="absolute right-0 top-1/4 transform -translate-y-1/2 mr-4 py-2 px-4 bg-gray-800 text-white rounded-lg"
-                onClick={closeModal}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                </svg>
-              </button>
+        onViewportEnter={() => setSelectedPage(SelectedPage.First)}
+      ></motion.div>
+      <div className='max-w-[1600px] h-[710px] w-full m-auto py-16 px-1 relative group overflow-y-auto'>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
+          {[0, 3, 6, 9].map((startIndex: number, columnIndex) => (
+            <div key={columnIndex} className="grid gap-1">
+              {generateImageElements(startIndex)}
             </div>
-          </div>
-        )}
+          ))}
+          {/* Modal */}
+          {showModal && (
+            <div id="modal" className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-50">
+              <div className="max-h-full overflow-hidden">
+                <img src={selectedImage} alt="" className="w-full max-h-full object-contain" style={{ maxWidth: '500px', maxHeight: '500px' }} />
+                <button
+                  className="absolute left-0 top-1/2 transform -translate-y-1/2 mt-4 ml-4 py-2 px-4 bg-gray-800 text-white rounded-lg"
+                  onClick={prevImage}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 mr-1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                  </svg>
+                </button>
+                <button
+                  className="absolute right-0 top-1/2 transform -translate-y-1/2 mt-4 mr-4 py-2 px-4 bg-gray-800 text-white rounded-lg"
+                  onClick={nextImage}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                  </svg>
+
+                </button>
+                <button
+                  className="absolute right-0 top-1/4 transform -translate-y-1/2 mr-4 py-2 px-4 bg-gray-800 text-white rounded-lg"
+                  onClick={closeModal}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
+
     </section>
   );
 }
