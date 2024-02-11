@@ -22,11 +22,11 @@ const Gallery = ({ setSelectedPage }: Props) => {
             <motion.div
                 onViewportEnter={() => setSelectedPage(SelectedPage.Gallery)}
             ></motion.div>
-            <div className='max-w-[1600px] h-[710px] w-full m-auto py-16 px-1 relative group'>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-2 px-52">
+            <div className='max-w-[1600px] w-full m-auto py-16 px-1 relative group'>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2 px-4 md:px-0">
                     {imageUrls.map((url, index) => (
                         <div key={index} className="relative">
-                            <img className="h-full max-w-full" src={url} alt="" />
+                            <img className="h-auto max-w-full" src={url} alt="" />
                             <span className="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-50">{categories[index]}</span>
                         </div>
                     ))}
