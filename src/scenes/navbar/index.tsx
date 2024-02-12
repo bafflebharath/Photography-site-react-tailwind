@@ -52,7 +52,7 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
                     setSelectedPage={setSelectedPage}
                   />
                 </div>
-                <div className={`${flexBetween} gap-8`}>
+                <div className={`animate-bounce ${flexBetween} gap-8`}>
                   <p>Insta</p>
                   <p>Whatsap</p>
                   {/* <ActionButton setSelectedPage={setSelectedPage}>

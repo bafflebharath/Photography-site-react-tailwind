@@ -16,3 +16,17 @@ export interface ClassType {
     description?: string;
     image: string;
 }
+
+export enum SelectedCategory {
+    Wedding = "Wedding",
+    Bride = "Bride",
+    Groom = "Groom",
+    BabyPhotoshoot = "Baby Photoshoot",
+    Puberty = "Puberty",
+    OutdoorPhotoshoot = "Outdoor Photoshoot"
+}
+
+export enum SelectedSpecialCategory {
+    StreetPhotography = "Street Photography",
+    wildlifePhotography = "wildlife Photography"
+}
