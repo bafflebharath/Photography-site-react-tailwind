@@ -2,7 +2,7 @@ export enum SelectedPage {
     Home = "home",
     ContactUs = "contactus",
     Gallery = "gallery",
-    First = "first"
+    Timeline= "timeline"
 }
 
 export interface BenefitType {
@@ -23,10 +23,7 @@ export enum SelectedCategory {
     Groom = "Groom",
     BabyPhotoshoot = "Baby Photoshoot",
     Puberty = "Puberty",
-    OutdoorPhotoshoot = "Outdoor Photoshoot"
-}
-
-export enum SelectedSpecialCategory {
+    OutdoorPhotoshoot = "Outdoor Photoshoot",
     StreetPhotography = "Street Photography",
     wildlifePhotography = "wildlife Photography"
 }

@@ -4,8 +4,8 @@ import { SelectedPage } from "@/shared/types";
 import Home from "@/scenes/home";
 import ContactUs from "./scenes/contactUs";
 import Footer from "@/scenes/footer";
-import First from "./scenes/masonry";
 import Gallery from "./scenes/gallery";
+import Timeline from "./scenes/timeline";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(
@@ -34,7 +34,7 @@ function App() {
       />
       <Home setSelectedPage={setSelectedPage} />
       <Gallery setSelectedPage={setSelectedPage}/>
-      <First setSelectedPage={setSelectedPage} />
+      <Timeline setSelectedPage={setSelectedPage} />
       <ContactUs setSelectedPage={setSelectedPage} />
       <Footer />
     </div>

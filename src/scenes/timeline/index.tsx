@@ -16,21 +16,21 @@ type Props = {
     setSelectedPage: (value: SelectedPage) => void;
 };
 
-const Gallery = ({ setSelectedPage }: Props) => {
+const Timeline = ({ setSelectedPage }: Props) => {
     const [imageUrls, setImageUrls] = useState<string[]>([]);
 
     useEffect(() => {
         const fetchImageUrls = async () => {
-            const urls = await loadImageUrls("gallery");
+            const urls = await loadImageUrls("timeline");
             setImageUrls(urls);
         };
         fetchImageUrls();
     }, []);
 
     return (
-        <section id="gallery" className="mx-auto min-h-full w-5/6 py-20">
+        <section id="timeline" className="mx-auto min-h-full w-5/6 py-20">
             <motion.div
-                onViewportEnter={() => setSelectedPage(SelectedPage.Gallery)}
+                onViewportEnter={() => setSelectedPage(SelectedPage.Timeline)}
             >
                 <motion.div
                     className="md:my-1 md:w-5/5"
@@ -60,4 +60,4 @@ const Gallery = ({ setSelectedPage }: Props) => {
     );
 };
 
-export default Gallery;
+export default Timeline;
