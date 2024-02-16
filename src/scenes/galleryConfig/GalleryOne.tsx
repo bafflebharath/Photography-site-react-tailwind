@@ -14,11 +14,23 @@ type Props = {
 
 const GalleryOne = ({ galleryImages }: Props) => {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+    const [isMobileView, setIsMobileView] = useState(false);
     var gridCondition = false;
     var categories: SelectedCategory[] = [];
 
-    if(galleryImages.length>2){
-        gridCondition = true;
+    useEffect(() => {
+        // Check if it's a mobile view
+        const handleResize = () => {
+            setIsMobileView(window.innerWidth <= 768); // Adjust the breakpoint as needed
+        };
+
+        window.addEventListener('resize', handleResize);
+        handleResize(); // Call once initially to set the initial state
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    if (galleryImages.length > 2) {
         categories = [
             SelectedCategory.Wedding,
             SelectedCategory.Bride,
@@ -27,7 +39,8 @@ const GalleryOne = ({ galleryImages }: Props) => {
             SelectedCategory.Puberty,
             SelectedCategory.OutdoorPhotoshoot
         ];
-    }else{
+    } else {
+        gridCondition = true;
         categories = [
             SelectedCategory.StreetPhotography,
             SelectedCategory.wildlifePhotography
@@ -49,10 +62,20 @@ const GalleryOne = ({ galleryImages }: Props) => {
     return (
         <motion.div
             variants={childVariant}
-            className="mt-8 rounded-md text-center"
+            className="mt-5 rounded-md text-center"
         >
             <div className='max-w-[900px] w-full m-auto relative group flex justify-center'>
-            <div className={gridCondition ? "grid grid-cols-2 md:grid-cols-3 gap-1 md:px-0" : "grid grid-cols-2 md:grid-cols-2 gap-1 md:px-0"}>
+                <div className={
+                    gridCondition
+                        ? (
+                            isMobileView
+                                ? "grid grid-cols-1 md:grid-cols-1 gap-1 md:px-0 justify-center"
+                                : "grid grid-cols-2 md:grid-cols-2 gap-1 md:px-0 justify-center"
+                        )
+                        : (isMobileView
+                            ? "grid grid-cols-2 md:grid-cols-2 gap-1 md:px-0 justify-center" :
+                            "grid grid-cols-3 md:grid-cols-3 gap-1 md:px-0 justify-center")
+                }>
                     {galleryImages.map((url, index) => (
                         <div key={index} className="relative cursor-pointer" onClick={() => handleImageClick(categories[index])}>
                             <img className="h-auto max-w-full" src={url} alt="" />

@@ -18,6 +18,7 @@ const MasonryModal = ({ category, onClose }: Props) => {
     const [selectedImage, setSelectedImage] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [showMasonry, setShowMasonry] = useState(true);
 
     useEffect(() => {
         const fetchImageUrls = async () => {
@@ -136,6 +137,12 @@ const MasonryModal = ({ category, onClose }: Props) => {
         }
     };
 
+    // Function to handle closing the Masonry modal
+    const closeMasonry = () => {
+        setShowMasonry(false);
+        onClose();
+    };
+
     return (
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
             <motion.div
@@ -144,8 +151,8 @@ const MasonryModal = ({ category, onClose }: Props) => {
                 animate="visible"
                 className="max-w-[900px] w-full m-auto relative group"
             >
-                <div className="fixed top-0 left-0 z-50 w-full h-full bg-black bg-opacity-75 flex items-center justify-center">
-                    <div className="max-w-[90%] max-h-[90%] overflow-auto rounded-lg p-8 custom-scrollbar">
+                <div className="fixed top-0 left-0 z-50 w-full h-full bg-black bg-opacity-75 flex items-center justify-center" onClick={closeMasonry}>
+                    <div className="max-w-[90%] max-h-[90%] overflow-auto rounded-lg p-8 custom-scrollbar" onClick={(e) => e.stopPropagation()}>
                         <button className="absolute top-2 right-6 text-white" onClick={onClose}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -158,8 +165,8 @@ const MasonryModal = ({ category, onClose }: Props) => {
                                 </div>
                             ))}
                             {showModal && (
-                                <div id="modal" className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-50">
-                                    <div className="max-h-full overflow-hidden" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
+                                <div id="modal" className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-50" onClick={closeModal}>
+                                    <div className="max-h-full overflow-hidden" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onClick={(e) => e.stopPropagation()}>
                                         <img src={selectedImage} alt="" className="w-full max-h-full object-contain" style={{ maxWidth: '500px', maxHeight: '500px' }} />
                                         <button
                                             className="absolute left-0 top-1/2 transform -translate-y-1/2 mt-4 ml-4 py-2 px-4 text-white"

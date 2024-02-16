@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
-import { RxDotFilled } from 'react-icons/rx';
+// import { RxDotFilled } from 'react-icons/rx';
 import { SelectedPage } from "@/shared/types";
 import { motion } from "framer-motion";
 import { loadImageUrls } from "../galleryConfig/imageLoader";
@@ -37,9 +37,9 @@ const Home = ({ setSelectedPage }: Props) => {
         }
     };
 
-    const goToSlide = (slideIndex: number) => {
-        setCurrentIndex(slideIndex);
-    };
+    // const goToSlide = (slideIndex: number) => {
+    //     setCurrentIndex(slideIndex);
+    // };
 
     useEffect(() => {
         const fetchImageUrls = async () => {
@@ -55,7 +55,7 @@ const Home = ({ setSelectedPage }: Props) => {
                 onViewportEnter={() => setSelectedPage(SelectedPage.Home)}
             ></motion.div>
             <div 
-                className='max-w-[1600px] h-[730px] w-full m-auto py-16 px-1 relative group'
+                className='max-w-[1600px] h-[840px] w-full m-auto relative group'
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
             >
@@ -77,7 +77,7 @@ const Home = ({ setSelectedPage }: Props) => {
                 <div className='absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
                     <BsChevronCompactRight onClick={nextSlide} size={30} />
                 </div>
-                <div className='flex top-4 justify-center py-2'>
+                {/* <div className='flex top-4 justify-center py-2'>
                     {slides.map((_, slideIndex) => (
                         <div
                             key={slideIndex}
@@ -87,7 +87,7 @@ const Home = ({ setSelectedPage }: Props) => {
                             <RxDotFilled />
                         </div>
                     ))}
-                </div>
+                </div> */}
             </div>
         </section>
     );

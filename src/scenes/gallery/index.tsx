@@ -28,12 +28,12 @@ const Gallery = ({ setSelectedPage }: Props) => {
     }, []);
 
     return (
-        <section id="gallery" className="mx-auto min-h-full w-5/6 py-20">
+        <section id="gallery" className="mx-auto w-12/12 pt-20 w-full m-auto relative group">
             <motion.div
                 onViewportEnter={() => setSelectedPage(SelectedPage.Gallery)}
             >
                 <motion.div
-                    className="md:my-1 md:w-5/5"
+                    className="md:my-1 md:w-3/5"
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.5 }}
