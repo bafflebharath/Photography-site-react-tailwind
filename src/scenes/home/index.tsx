@@ -1,67 +1,80 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import { RxDotFilled } from 'react-icons/rx';
 import { SelectedPage } from "@/shared/types";
 import { motion } from "framer-motion";
+import { loadImageUrls } from "../galleryConfig/imageLoader";
 
 type Props = {
     setSelectedPage: (value: SelectedPage) => void;
 };
 
 const Home = ({ setSelectedPage }: Props) => {
-    const slides = [
-        {
-            url: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2620&q=80',
-        },
-        {
-            url: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80',
-        },
-        {
-            url: 'https://images.unsplash.com/photo-1661961112951-f2bfd1f253ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2672&q=80',
-        },
-
-        {
-            url: 'https://images.unsplash.com/photo-1512756290469-ec264b7fbf87?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2253&q=80',
-        },
-        {
-            url: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2671&q=80',
-        },
-    ];
-
+    const [slides, setSlides] = useState<string[]>([]);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [touchStartX, setTouchStartX] = useState(0);
 
     const prevSlide = () => {
-        const isFirstSlide = currentIndex === 0;
-        const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
-        setCurrentIndex(newIndex);
+        setCurrentIndex(prevIndex => (prevIndex === 0 ? slides.length - 1 : prevIndex - 1));
     };
 
     const nextSlide = () => {
-        const isLastSlide = currentIndex === slides.length - 1;
-        const newIndex = isLastSlide ? 0 : currentIndex + 1;
-        setCurrentIndex(newIndex);
+        setCurrentIndex(prevIndex => (prevIndex === slides.length - 1 ? 0 : prevIndex + 1));
+    };
+
+    const handleTouchStart = (event: React.TouchEvent) => {
+        setTouchStartX(event.touches[0].clientX);
+    };
+
+    const handleTouchMove = (event: React.TouchEvent) => {
+        const touchDistance = event.touches[0].clientX - touchStartX;
+        if (touchDistance > 50) {
+            nextSlide();
+            setTouchStartX(event.touches[0].clientX);
+        } else if (touchDistance < -50) {
+            prevSlide();
+            setTouchStartX(event.touches[0].clientX);
+        }
     };
 
     const goToSlide = (slideIndex: number) => {
         setCurrentIndex(slideIndex);
     };
 
+    useEffect(() => {
+        const fetchImageUrls = async () => {
+            const urls = await loadImageUrls("slides");
+            setSlides(urls);
+        };
+        fetchImageUrls();
+    }, []);
+
     return (
         <section id="home">
             <motion.div
                 onViewportEnter={() => setSelectedPage(SelectedPage.Home)}
             ></motion.div>
-            <div className='max-w-[1600px] h-[730px] w-full m-auto py-16 px-1 relative group'>
-                <div
-                    style={{ backgroundImage: `url(${slides[currentIndex].url})`}}
-                    className='w-full h-full rounded-1xl bg-center bg-cover duration-500 transition-opacity'
-                ></div>
+            <div 
+                className='max-w-[1600px] h-[730px] w-full m-auto py-16 px-1 relative group'
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+            >
+                {slides.length > 0 && (
+                    <motion.div
+                        key={currentIndex}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5 }}
+                        style={{ backgroundImage: `url(${slides[currentIndex]})`}}
+                        className='w-full h-full rounded-1xl bg-center bg-cover duration-500 transition-opacity'
+                    ></motion.div>
+                )}
                 {/* Left Arrow */}
-                <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
+                <div className='absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
                     <BsChevronCompactLeft onClick={prevSlide} size={30} />
                 </div>
                 {/* Right Arrow */}
-                <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
+                <div className='absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
                     <BsChevronCompactRight onClick={nextSlide} size={30} />
                 </div>
                 <div className='flex top-4 justify-center py-2'>
@@ -69,7 +82,7 @@ const Home = ({ setSelectedPage }: Props) => {
                         <div
                             key={slideIndex}
                             onClick={() => goToSlide(slideIndex)}
-                            className='text-2xl cursor-pointer'
+                            className={`text-2xl cursor-pointer ${slideIndex === currentIndex ? 'text-white' : 'text-gray-700'}`}
                         >
                             <RxDotFilled />
                         </div>

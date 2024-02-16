@@ -118,6 +118,22 @@ const MasonryModal = ({ category, onClose }: Props) => {
         setShowModal(false);
     };
 
+    //Swipe Gestures
+    const [touchStartX, setTouchStartX] = useState(0);
+
+    const handleTouchStart = (event: React.TouchEvent) => {
+        setTouchStartX(event.touches[0].clientX);
+    };
+
+    const handleTouchMove = (event: React.TouchEvent) => {
+        const touchDistance = event.touches[0].clientX - touchStartX;
+        if (touchDistance > 50) {
+            prevImage();
+        } else if (touchDistance < -50) {
+            nextImage();
+        }
+    };
+
     return (
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
             <motion.div
@@ -141,7 +157,7 @@ const MasonryModal = ({ category, onClose }: Props) => {
                             ))}
                             {showModal && (
                                 <div id="modal" className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-50">
-                                    <div className="max-h-full overflow-hidden">
+                                    <div className="max-h-full overflow-hidden" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
                                         <img src={selectedImage} alt="" className="w-full max-h-full object-contain" style={{ maxWidth: '500px', maxHeight: '500px' }} />
                                         <button
                                             className="absolute left-0 top-1/2 transform -translate-y-1/2 mt-4 ml-4 py-2 px-4 text-white"

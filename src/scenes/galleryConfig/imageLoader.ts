@@ -3,7 +3,7 @@ export const loadImageUrls = async (folderName: String) => {
     const name = folderName.replace(/\s/g, '').toLowerCase();
     const imageUrls = [];
     var count = 0;
-    if (name === "gallery") {
+    if (name === "gallery" || name === "slides") {
         count = 6;
     }else if(name === "timeline"){
         count = 2;
