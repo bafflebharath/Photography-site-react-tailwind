@@ -127,9 +127,9 @@ const MasonryModal = ({ category, onClose }: Props) => {
 
     const handleTouchMove = (event: React.TouchEvent) => {
         const touchDistance = event.touches[0].clientX - touchStartX;
-        if (touchDistance > 50) {
+        if (touchDistance > 100) {
             prevImage();
-        } else if (touchDistance < -50) {
+        } else if (touchDistance < -100) {
             nextImage();
         }
     };
