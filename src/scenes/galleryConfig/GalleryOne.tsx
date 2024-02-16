@@ -54,7 +54,7 @@ const GalleryOne = ({ galleryImages }: Props) => {
             <div className='max-w-[900px] w-full m-auto relative group flex justify-center'>
             <div className={gridCondition ? "grid grid-cols-2 md:grid-cols-3 gap-1 md:px-0" : "grid grid-cols-2 md:grid-cols-2 gap-1 md:px-0"}>
                     {galleryImages.map((url, index) => (
-                        <div key={index} className="relative" onClick={() => handleImageClick(categories[index])}>
+                        <div key={index} className="relative cursor-pointer" onClick={() => handleImageClick(categories[index])}>
                             <img className="h-auto max-w-full" src={url} alt="" />
                             <span className="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-30">{categories[index]}</span>
                         </div>

@@ -11,9 +11,30 @@ body,
   height: 100%;
   width: 100%;
   font-family: "DM Sans", sans-serif;
-  @apply text-gray-500;
+  @apply text-gray-100;
+  @apply bg-black;
 }
 
 .modal-open {
   overflow: hidden;
+}
+
+/* Inside your CSS file or styled-components */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(155, 155, 155, 0.5) rgba(255, 255, 255, 0.1); /* Change colors as needed */
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Adjust the width of the scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1); /* Change the background color */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(155, 155, 155, 0.5); /* Change the color of the thumb */
+  border-radius: 4px; /* Adjust the border radius */
+  border: 2px solid rgba(255, 255, 255, 0.1); /* Change the border color */
 }
