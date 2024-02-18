@@ -137,59 +137,59 @@ const MasonryModal = ({ category, onClose }: Props) => {
     };
 
     return (
-            <motion.div
-                variants={childVariant}
-                initial="hidden"
-                animate="visible"
-            >
-                <div className="fixed top-0 left-0 z-50 w-full h-full bg-black bg-opacity-25 flex items-center justify-center" onClick={onClose}>
-                    <div className="max-w-[90%] max-h-[90%] overflow-auto rounded-lg p-8 custom-scrollbar" onClick={(e) => e.stopPropagation()}>
-                        <button className="absolute top-4 right-6 text-white" onClick={onClose}>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                        </button>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-1 md:px-0 ">
-                            {[0, 3, 6, 9].map((startIndex: number, columnIndex) => (
-                                <div key={columnIndex} className="grid gap-1">
-                                    {generateImageElements(startIndex)}
+        <motion.div
+            variants={childVariant}
+            initial="hidden"
+            animate="visible"
+        >
+            <div className="fixed top-0 left-0 z-50 w-full h-full bg-black bg-opacity-100 flex items-center justify-center" onClick={onClose}>
+                <div className="max-w-[90%] max-h-[90%] overflow-auto rounded-lg p-8 custom-scrollbar" onClick={(e) => e.stopPropagation()}>
+                    <button className="absolute top-4 right-6 text-white" onClick={onClose}>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-1 md:px-0 ">
+                        {[0, 3, 6, 9].map((startIndex: number, columnIndex) => (
+                            <div key={columnIndex} className="grid gap-1">
+                                {generateImageElements(startIndex)}
+                            </div>
+                        ))}
+                        {showModal && (
+                            <div id="modal" className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-50" onClick={closeModal}>
+                                <div className="max-h-full overflow-hidden" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onClick={(e) => e.stopPropagation()}>
+                                    <img src={selectedImage} alt="" className="w-full max-h-full object-contain" style={{ maxWidth: '500px', maxHeight: '500px' }} />
+                                    <button
+                                        className="absolute left-0 top-1/2 transform -translate-y-1/2 mt-4 ml-4 py-2 px-4 text-white"
+                                        onClick={prevImage}
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                        </svg>
+                                    </button>
+                                    <button
+                                        className="absolute right-0 top-1/2 transform -translate-y-1/2 mt-4 mr-4 py-2 px-4 text-white"
+                                        onClick={nextImage}
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </button>
+                                    <button
+                                        className="absolute right-0 top-4 transform -translate-y-1/2 mt-4 mr-6 py-2 text-white"
+                                        onClick={closeModal}
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
                                 </div>
-                            ))}
-                            {showModal && (
-                                <div id="modal" className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-50" onClick={closeModal}>
-                                    <div className="max-h-full overflow-hidden" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onClick={(e) => e.stopPropagation()}>
-                                        <img src={selectedImage} alt="" className="w-full max-h-full object-contain" style={{ maxWidth: '500px', maxHeight: '500px' }} />
-                                        <button
-                                            className="absolute left-0 top-1/2 transform -translate-y-1/2 mt-4 ml-4 py-2 px-4 text-white"
-                                            onClick={prevImage}
-                                        >
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                            </svg>
-                                        </button>
-                                        <button
-                                            className="absolute right-0 top-1/2 transform -translate-y-1/2 mt-4 mr-4 py-2 px-4 text-white"
-                                            onClick={nextImage}
-                                        >
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                            </svg>
-                                        </button>
-                                        <button
-                                            className="absolute right-0 top-4 transform -translate-y-1/2 mt-4 mr-6 py-2 text-white"
-                                            onClick={closeModal}
-                                        >
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
+                            </div>
+                        )}
                     </div>
                 </div>
-            </motion.div>
+            </div>
+        </motion.div>
     );
 };
 

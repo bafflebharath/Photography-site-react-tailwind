@@ -25,23 +25,23 @@ const Timeline = ({ setSelectedPage }: Props) => {
             <motion.div
                 onViewportEnter={() => setSelectedPage(SelectedPage.Timeline)}
             >
-                <div  className="w-full h-screen pt-14">
-                <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.5 }}
-                    transition={{ delay: 0.5, duration: 0.5 }}
-                    variants={{
-                        hidden: { opacity: 0, y: 50 },
-                        visible: { opacity: 1, y: 0 },
-                    }}
-                >
-                    <GalleryOne
+                <div className="w-full h-screen pt-8">
+                    <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.5 }}
+                        transition={{ delay: 0.5, duration: 0.5 }}
+                        variants={{
+                            hidden: { opacity: 0, y: 50 },
+                            visible: { opacity: 1, y: 0 },
+                        }}
+                    >
+                        <GalleryOne
                             galleryImages={imageUrls}
                         />
-                </motion.div>
-                    </div>
-                
+                    </motion.div>
+                </div>
+
             </motion.div>
         </section>
     );

@@ -2,7 +2,7 @@ export enum SelectedPage {
     Home = "home",
     ContactUs = "contactus",
     Gallery = "gallery",
-    Timeline= "timeline"
+    Timeline = "timeline"
 }
 
 export enum SelectedCategory {
@@ -10,8 +10,8 @@ export enum SelectedCategory {
     Bride = "Bride",
     Groom = "Groom",
     BabyPhotoshoot = "Baby Photoshoot",
-    Puberty = "Puberty",
+    Events = "Events & Ceremony",
     OutdoorPhotoshoot = "Outdoor Photoshoot",
-    StreetPhotography = "Street Photography",
-    wildlifePhotography = "wildlife Photography"
+    StreetPhotography = "People & Street",
+    wildlifePhotography = "Nature & Wildlife"
 }

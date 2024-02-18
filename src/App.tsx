@@ -25,14 +25,14 @@ function App() {
   }, []);
 
   return (
-    <div className="app">
+    <div className="app text-white">
       <Navbar
         isTopOfPage={isTopOfPage}
         selectedPage={selectedPage}
         setSelectedPage={setSelectedPage}
       />
       <Home setSelectedPage={setSelectedPage} />
-      <Gallery setSelectedPage={setSelectedPage}/>
+      <Gallery setSelectedPage={setSelectedPage} />
       <Timeline setSelectedPage={setSelectedPage} />
       <ContactUs setSelectedPage={setSelectedPage} />
       {/* <Footer /> */}

@@ -26,7 +26,7 @@ const Gallery = ({ setSelectedPage }: Props) => {
                 onViewportEnter={() => setSelectedPage(SelectedPage.Gallery)}
             >
             </motion.div>
-            <div className="w-full h-screen pt-14">
+            <div className="w-full h-screen pt-8">
                 <motion.div
                     initial="hidden"
                     whileInView="visible"

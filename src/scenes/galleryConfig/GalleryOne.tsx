@@ -40,9 +40,9 @@ const GalleryOne = ({ galleryImages }: Props) => {
             SelectedCategory.Wedding,
             SelectedCategory.Bride,
             SelectedCategory.Groom,
-            SelectedCategory.BabyPhotoshoot,
-            SelectedCategory.Puberty,
-            SelectedCategory.OutdoorPhotoshoot
+            SelectedCategory.OutdoorPhotoshoot,
+            SelectedCategory.Events,
+            SelectedCategory.BabyPhotoshoot
         ];
     } else {
         categories = [
@@ -64,36 +64,38 @@ const GalleryOne = ({ galleryImages }: Props) => {
     }, [selectedCategory]);
 
     return (
-        <motion.div
-            variants={childVariant}
-            className='flex justify-center'
-        >
+        <div className="flex justify-center items-center h-screen">
+            <motion.div
+                variants={childVariant}
+                className="flex justify-center items-center"
+            >
                 <div className={
                     gridCondition
                         ? (
                             isMobileView
-                                ? "grid grid-cols-1 md:grid-cols-1 gap-4 md:px-0"
-                                : "grid grid-cols-2 md:grid-cols-2 gap-4 md:px-0"
+                                ? "grid grid-cols-1 md:grid-cols-1 gap-5 md:px-0"
+                                : "grid grid-cols-2 md:grid-cols-2 gap-5 md:px-0"
                         )
                         : (isMobileView
-                            ? "grid grid-cols-2 md:grid-cols-2 gap-4 md:px-0" :
-                            "grid grid-cols-3 md:grid-cols-3 gap-4 md:px-32")
+                            ? "grid grid-cols-2 md:grid-cols-2 gap-5 md:px-0" :
+                            "grid grid-cols-3 md:grid-cols-3 gap-5 md:px-32")
                 }>
                     {galleryImages.map((url, index) => (
-                        <motion.div 
-                        key={index} 
-                        className="relative cursor-pointer overflow-hidden"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.3 }}
-                        onClick={() => handleImageClick(categories[index])}
-                    >
+                        <motion.div
+                            key={index}
+                            className="relative cursor-pointer overflow-hidden"
+                            whileHover={{ scale: 1.05 }}
+                            transition={{ duration: 0.3 }}
+                            onClick={() => handleImageClick(categories[index])}
+                        >
                             <img src={url} alt="" />
                             <span className="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-30">{categories[index]}</span>
                         </motion.div>
                     ))}
                 </div>
-            {selectedCategory && <MasonryModal category={selectedCategory} onClose={() => setSelectedCategory(null)} />}
-        </motion.div>
+                {selectedCategory && <MasonryModal category={selectedCategory} onClose={() => setSelectedCategory(null)} />}
+            </motion.div>
+        </div>
     );
 };
 

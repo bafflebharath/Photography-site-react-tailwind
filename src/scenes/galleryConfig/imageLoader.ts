@@ -5,9 +5,9 @@ export const loadImageUrls = async (folderName: String) => {
     var count = 0;
     if (name === "gallery" || name === "slides") {
         count = 6;
-    }else if(name === "timeline"){
+    } else if (name === "timeline") {
         count = 2;
-    }else{
+    } else {
         count = 12;
     }
     try {
