@@ -5,13 +5,6 @@ import { useEffect, useState } from "react";
 import GalleryOne from "../galleryConfig/GalleryOne";
 import { loadImageUrls } from "../galleryConfig/imageLoader";
 
-const container = {
-    hidden: {},
-    visible: {
-        transition: { staggerChildren: 0.2 },
-    },
-};
-
 type Props = {
     setSelectedPage: (value: SelectedPage) => void;
 };
@@ -28,34 +21,29 @@ const Gallery = ({ setSelectedPage }: Props) => {
     }, []);
 
     return (
-        <section id="gallery" className="mx-auto w-12/12 pt-20 w-full m-auto relative group">
+        <section id="gallery">
             <motion.div
                 onViewportEnter={() => setSelectedPage(SelectedPage.Gallery)}
             >
+            </motion.div>
+            <div className="w-full h-screen pt-14">
                 <motion.div
-                    className="md:my-1 md:w-3/5"
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.5 }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ delay: 0.5, duration: 0.5 }}
                     variants={{
-                        hidden: { opacity: 0, x: -50 },
-                        visible: { opacity: 1, x: 0 },
+                        hidden: { opacity: 0, y: 50 },
+                        visible: { opacity: 1, y: 0 },
                     }}
-                >
-                </motion.div>
-                <motion.div
-                    className="mt-3 items-center justify-center gap-8 md:flex"
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.5 }}
-                    variants={container}
+                    className='w-full h-full rounded-1xl bg-center bg-cover duration-500 transition-opacity'
                 >
                     <GalleryOne
-                            galleryImages={imageUrls}
-                        />
+                        galleryImages={imageUrls}
+                    />
                 </motion.div>
-            </motion.div>
+            </div>
+
         </section>
     );
 };

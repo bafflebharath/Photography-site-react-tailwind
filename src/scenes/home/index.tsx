@@ -54,8 +54,8 @@ const Home = ({ setSelectedPage }: Props) => {
             <motion.div
                 onViewportEnter={() => setSelectedPage(SelectedPage.Home)}
             ></motion.div>
-            <div 
-                className='max-w-[1600px] h-[840px] w-full m-auto relative group'
+            <div
+                className='w-full h-screen pt-14'
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
             >
@@ -64,8 +64,12 @@ const Home = ({ setSelectedPage }: Props) => {
                         key={currentIndex}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ duration: 0.5 }}
-                        style={{ backgroundImage: `url(${slides[currentIndex]})`}}
+                        transition={{ delay: 0.2, duration: 0.2 }}
+                        variants={{
+                            hidden: { opacity: 0, y: 50 },
+                            visible: { opacity: 1, y: 0 },
+                        }}
+                        style={{ backgroundImage: `url(${slides[currentIndex]})` }}
                         className='w-full h-full rounded-1xl bg-center bg-cover duration-500 transition-opacity'
                     ></motion.div>
                 )}

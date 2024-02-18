@@ -15,13 +15,13 @@ type Props = {
 const GalleryOne = ({ galleryImages }: Props) => {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
     const [isMobileView, setIsMobileView] = useState(false);
-    var gridCondition = false;
+    const [gridCondition, setGridCondition] = useState(false);
     var categories: SelectedCategory[] = [];
 
     useEffect(() => {
         // Check if it's a mobile view
         const handleResize = () => {
-            setIsMobileView(window.innerWidth <= 768); // Adjust the breakpoint as needed
+            setIsMobileView(window.innerWidth <= 750); // Adjust the breakpoint as needed
         };
 
         window.addEventListener('resize', handleResize);
@@ -29,6 +29,11 @@ const GalleryOne = ({ galleryImages }: Props) => {
 
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+
+    useEffect(() => {
+        // Set grid condition based on the number of images
+        setGridCondition(galleryImages.length <= 2);
+    }, [galleryImages]);
 
     if (galleryImages.length > 2) {
         categories = [
@@ -40,7 +45,6 @@ const GalleryOne = ({ galleryImages }: Props) => {
             SelectedCategory.OutdoorPhotoshoot
         ];
     } else {
-        gridCondition = true;
         categories = [
             SelectedCategory.StreetPhotography,
             SelectedCategory.wildlifePhotography
@@ -62,28 +66,32 @@ const GalleryOne = ({ galleryImages }: Props) => {
     return (
         <motion.div
             variants={childVariant}
-            className="mt-5 rounded-md text-center"
+            className='flex justify-center'
         >
-            <div className='max-w-[900px] w-full m-auto relative group flex justify-center'>
                 <div className={
                     gridCondition
                         ? (
                             isMobileView
-                                ? "grid grid-cols-1 md:grid-cols-1 gap-1 md:px-0 justify-center"
-                                : "grid grid-cols-2 md:grid-cols-2 gap-1 md:px-0 justify-center"
+                                ? "grid grid-cols-1 md:grid-cols-1 gap-4 md:px-0"
+                                : "grid grid-cols-2 md:grid-cols-2 gap-4 md:px-0"
                         )
                         : (isMobileView
-                            ? "grid grid-cols-2 md:grid-cols-2 gap-1 md:px-0 justify-center" :
-                            "grid grid-cols-3 md:grid-cols-3 gap-1 md:px-0 justify-center")
+                            ? "grid grid-cols-2 md:grid-cols-2 gap-4 md:px-0" :
+                            "grid grid-cols-3 md:grid-cols-3 gap-4 md:px-32")
                 }>
                     {galleryImages.map((url, index) => (
-                        <div key={index} className="relative cursor-pointer" onClick={() => handleImageClick(categories[index])}>
-                            <img className="h-auto max-w-full" src={url} alt="" />
+                        <motion.div 
+                        key={index} 
+                        className="relative cursor-pointer overflow-hidden"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.3 }}
+                        onClick={() => handleImageClick(categories[index])}
+                    >
+                            <img src={url} alt="" />
                             <span className="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-30">{categories[index]}</span>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
-            </div>
             {selectedCategory && <MasonryModal category={selectedCategory} onClose={() => setSelectedCategory(null)} />}
         </motion.div>
     );

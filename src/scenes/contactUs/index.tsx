@@ -3,6 +3,7 @@ import { SelectedPage } from "@/shared/types";
 import { motion } from "framer-motion";
 import ContactUsPageGraphic from "@/assets/gallery/img1.jpg";
 import HText from "@/shared/HText";
+import Footer from "../footer";
 
 type Props = {
     setSelectedPage: (value: SelectedPage) => void;
@@ -26,13 +27,12 @@ const ContactUs = ({ setSelectedPage }: Props) => {
     };
 
     return (
-        <section id="contactus" className="mx-auto w-5/6 py-20">
+        <section id="contactus" className="pt-16 w-full h-screen relative group pr-5 pl-5">
             <motion.div
                 onViewportEnter={() => setSelectedPage(SelectedPage.ContactUs)}
             >
                 {/* HEADER */}
                 <motion.div
-                    className="md:w-3/5"
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.5 }}
@@ -154,6 +154,7 @@ const ContactUs = ({ setSelectedPage }: Props) => {
                         </div>
                     </motion.div>
                 </div>
+                <Footer />
             </motion.div>
         </section>
     );

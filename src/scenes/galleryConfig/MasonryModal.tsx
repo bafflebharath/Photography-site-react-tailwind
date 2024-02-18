@@ -137,16 +137,14 @@ const MasonryModal = ({ category, onClose }: Props) => {
     };
 
     return (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
             <motion.div
                 variants={childVariant}
                 initial="hidden"
                 animate="visible"
-                className="max-w-[900px] w-full m-auto relative group"
             >
-                <div className="fixed top-0 left-0 z-50 w-full h-full bg-black bg-opacity-75 flex items-center justify-center" onClick={onClose}>
+                <div className="fixed top-0 left-0 z-50 w-full h-full bg-black bg-opacity-25 flex items-center justify-center" onClick={onClose}>
                     <div className="max-w-[90%] max-h-[90%] overflow-auto rounded-lg p-8 custom-scrollbar" onClick={(e) => e.stopPropagation()}>
-                        <button className="absolute top-2 right-6 text-white" onClick={onClose}>
+                        <button className="absolute top-4 right-6 text-white" onClick={onClose}>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
@@ -178,7 +176,7 @@ const MasonryModal = ({ category, onClose }: Props) => {
                                             </svg>
                                         </button>
                                         <button
-                                            className="absolute right-0 top-8 transform -translate-y-1/2 mt-4 mr-6 py-2 text-white"
+                                            className="absolute right-0 top-4 transform -translate-y-1/2 mt-4 mr-6 py-2 text-white"
                                             onClick={closeModal}
                                         >
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
@@ -192,7 +190,6 @@ const MasonryModal = ({ category, onClose }: Props) => {
                     </div>
                 </div>
             </motion.div>
-        </div>
     );
 };
 
