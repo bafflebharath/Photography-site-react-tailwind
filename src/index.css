@@ -22,27 +22,12 @@ body,
 /* Inside your CSS file or styled-components */
 .custom-scrollbar {
   scrollbar-width: none;
-  scrollbar-color: rgba(155, 155, 155, 0.5) rgba(255, 255, 255, 0.1);
   /* Change colors as needed */
 }
 
 .custom-scrollbar::-webkit-scrollbar {
   width: 0;
   /* Adjust the width of the scrollbar */
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-  /* Change the background color */
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(155, 155, 155, 0.5);
-  /* Change the color of the thumb */
-  border-radius: 4px;
-  /* Adjust the border radius */
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  /* Change the border color */
 }
 
 /* Loader */

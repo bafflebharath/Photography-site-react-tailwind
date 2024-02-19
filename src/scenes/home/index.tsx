@@ -47,7 +47,7 @@ const Home = ({ setSelectedPage }: Props) => {
             setSlides(urls);
         };
         fetchImageUrls();
-    }, []);
+    }, [slides]);
 
     return (
         <section id="home">

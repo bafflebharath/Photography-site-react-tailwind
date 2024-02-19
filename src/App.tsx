@@ -13,6 +13,7 @@ function App() {
   const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true);
 
   useEffect(() => {
+    // window.addEventListener("beforeunload", handleBeforeUnload);
     const handleScroll = () => {
       if (window.scrollY === 0) {
         setIsTopOfPage(true);
@@ -23,6 +24,10 @@ function App() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // const handleBeforeUnload = () => {
+  //   window.scrollTo(0, 0);
+  // };
 
   return (
     <div className="app text-white">

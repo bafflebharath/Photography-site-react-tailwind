@@ -17,13 +17,13 @@ const ContactUs = ({ setSelectedPage }: Props) => {
                 className="flex flex-col justify-center items-center"
             >
                 {/* Top Row */}
-                <div className="justify-center item-center mb-24">
+                <div className="justify-center item-center mb-32">
                     <HText>
-                        <span className="text-white text-lg">CAPTURE YOUR MOMENTS CREATE MEMORIES</span>
+                        <span className="text-white text-sm">CAPTURE YOUR MOMENTS CREATE MEMORIES</span>
                     </HText>
                 </div>
                 {/* Middle Row */}
-                <div className="text-white text-center mb-24">
+                <div className="text-white text-center mb-44">
                     {/* Description */}
                     {/* Empty Space */}
                     <div className=""></div>
@@ -77,11 +77,11 @@ const ContactUs = ({ setSelectedPage }: Props) => {
                 <div className="text-center">
                     <div className="basis-1/3 md:mt-0">
                         <div className="flex justify-center">
-                            <img alt="logo" src={Logo} className="h-8 mr-2" />
+                            <img alt="logo" src={Logo} className="h-6 mr-2" />
                             <div className="border-l h-8 border-white"></div>
-                            <img alt="logoname" src={LogoName} className="h-8 mr-2 ml-2" />
+                            <img alt="logoname" src={LogoName} className="h-6 mr-2 ml-2" />
                         </div>
-                        <p className="justify-center my-8">© BlackBox Studios All Rights Reserved.</p>
+                        <p className="justify-center my-4">© BlackBox Studios All Rights Reserved.</p>
                     </div>
                 </div>
             </motion.div>

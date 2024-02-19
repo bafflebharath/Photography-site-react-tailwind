@@ -18,7 +18,7 @@ const Timeline = ({ setSelectedPage }: Props) => {
             setImageUrls(urls);
         };
         fetchImageUrls();
-    }, []);
+    }, [imageUrls]);
 
     return (
         <section id="timeline">
@@ -41,7 +41,6 @@ const Timeline = ({ setSelectedPage }: Props) => {
                         />
                     </motion.div>
                 </div>
-
             </motion.div>
         </section>
     );

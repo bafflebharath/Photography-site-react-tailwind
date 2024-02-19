@@ -18,14 +18,13 @@ const Gallery = ({ setSelectedPage }: Props) => {
             setImageUrls(urls);
         };
         fetchImageUrls();
-    }, []);
+    }, [imageUrls]);
 
     return (
         <section id="gallery">
             <motion.div
                 onViewportEnter={() => setSelectedPage(SelectedPage.Gallery)}
             >
-            </motion.div>
             <div className="w-full h-screen pt-8">
                 <motion.div
                     initial="hidden"
@@ -36,14 +35,13 @@ const Gallery = ({ setSelectedPage }: Props) => {
                         hidden: { opacity: 0, y: 50 },
                         visible: { opacity: 1, y: 0 },
                     }}
-                    className='w-full h-full rounded-1xl bg-center bg-cover duration-500 transition-opacity'
                 >
                     <GalleryOne
                         galleryImages={imageUrls}
                     />
                 </motion.div>
             </div>
-
+            </motion.div>
         </section>
     );
 };
